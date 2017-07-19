@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="icon"
+		  	  type="image/png"
+		  	  href="favicon.png" />
+			<style>
+				body
+					{
+   						margin: 5px;
+    					float: left;
+    					background: AntiqueWhite;
+					}
+			</style>		
+	</head>
+	<title>Abactivity</title>
+	<body>
+	<a href="index.html"><button type="button">Terug naar Inlogpagina</button></a>
+	<h1>Home Menu</h1>
+		<p>Welkom in het hoofdmenu, hier kunt verschillende opties zijn die u kunt uitvoeren. Sommige opties <br>
+		   zijn niet voor alle gebruikers beschikbaar. Ook kunt u ervoor kiezen om uit te loggen <br>
+		   
+			
+			<div>  
+				<form id = "agendaform">	
+    	 
+        			<input type="button" value="Agenda" id="agenda" />
+  
+				</form>
+				<form id = "gebruikerform">	
+    	 
+        			<input type="button" value="GebruikerPagina" id="gebruiker" />
+  
+				</form>
+				
+				<form id = "deleteGform">	
+    	 
+        			<input type="button" value="Delete Gebruikers" id="deleteGebruiker" />
+  
+				</form>
+				<form id = "klantform">	
+    	 
+        			<input type="button" value="KlantenPagina" id="klant" />
+  
+				</form>
+				<form id = "deleteKform">	
+    	 
+        			<input type="button" value="Delete Klanten" id="deleteKlant" />
+  
+				</form>
+				<form id = "uitlogform">	
+    	 
+        			<input type="button" value="Uitloggen" id="uitlog" />
+  
+				</form>
+				<form id = "wijzigwachtwoordform">	
+    	 
+        			<input type="button" value="Wijzig Wachtwoord" id="wijzig" />
+  
+				</form>
+			</div>
+		
+		<script src="https://code.jquery.com/jquery-3.2.0.min.js"></script>
+		<script>
+		$("#agenda").click(function() {
+			 
+			 $.ajax({
+				    url: "restservices/testing/getgebruiker3",
+				    method: "GET",
+				    beforeSend: function (xhr) {
+				        var token = window.sessionStorage.getItem("sessionToken");
+				        xhr.setRequestHeader( 'Authorization', 'Bearer ' + token);
+				        
+				    },
+				    success: function (data) {
+				    	 
+						 var gebruikers = data;
+						 window.location.href = "AgendaPagina.html";
+				    },
+				    error: function (jqXHR, status, err){
+				    	alert("U bent niet ingelogd of niet geauthoriseert voor deze actie");
+				    }
+				   
+				});
+			});
+		
+		$("#gebruiker").click(function() {
+			 
+			 $.ajax({
+				    url: "restservices/testing/getgebruiker2",
+				    method: "GET",
+				    beforeSend: function (xhr) {
+				        var token = window.sessionStorage.getItem("sessionToken");
+				        xhr.setRequestHeader( 'Authorization', 'Bearer ' + token);
+				        
+				    },
+				    success: function (data) {
+				    	 
+						 var gebruikers = data;
+						 window.location.href = "GebruikerPagina.html";
+				    },
+				    error: function (jqXHR, status, err){
+				    	alert("U bent niet ingelogd of niet geauthoriseert voor deze actie");
+				    }
+				   
+				});
+			});
+		
+		$("#uitlog").click(function() {
+			 
+			 $.ajax({
+				    url: "restservices/testing/getgebruiker3",
+				    method: "GET",
+				    beforeSend: function (xhr) {
+				        var token = window.sessionStorage.getItem("sessionToken");
+				        xhr.setRequestHeader( 'Authorization', 'Bearer ' + token);
+				        
+				    },
+				    success: function (data) {
+				    	 
+						 var gebruikers = data;
+						 window.location.href = "Uitlog.html";
+				    },
+				    error: function (jqXHR, status, err){
+				    	alert("U bent niet ingelogd of niet geauthoriseert voor deze actie");
+				    }
+				   
+				});
+			});
+		
+		$("#wijzig").click(function() {
+			 
+			 $.ajax({
+				    url: "restservices/testing/getgebruiker3",
+				    method: "GET",
+				    beforeSend: function (xhr) {
+				        var token = window.sessionStorage.getItem("sessionToken");
+				        xhr.setRequestHeader( 'Authorization', 'Bearer ' + token);
+				        
+				    },
+				    success: function (data) {
+				    	 
+						 var gebruikers = data;
+						 window.location.href = "WijzigWachtwoord.html";
+				    },
+				    error: function (jqXHR, status, err){
+				    	alert("U bent niet ingelogd of niet geauthoriseert voor deze actie");
+				    }
+				   
+				});
+			});
+		
+		$("#deleteGebruiker").click(function() {
+			 
+			 $.ajax({
+				    url: "restservices/testing/getgebruiker2",
+				    method: "GET",
+				    beforeSend: function (xhr) {
+				        var token = window.sessionStorage.getItem("sessionToken");
+				        xhr.setRequestHeader( 'Authorization', 'Bearer ' + token);
+				        
+				    },
+				    success: function (data) {
+				    	 
+						 var gebruikers = data;
+						 window.location.href = "DeleteGebruiker.html";
+				    },
+				    error: function (jqXHR, status, err){
+				    	alert("U bent niet ingelogd of niet geauthoriseert voor deze actie");
+				    }
+				   
+				});
+			});
+		
+		$("#deleteKlant").click(function() {
+			 
+			 $.ajax({
+				    url: "restservices/testing/getgebruiker2",
+				    method: "GET",
+				    beforeSend: function (xhr) {
+				        var token = window.sessionStorage.getItem("sessionToken");
+				        xhr.setRequestHeader( 'Authorization', 'Bearer ' + token);
+				        
+				    },
+				    success: function (data) {
+				    	 
+						 var gebruikers = data;
+						 window.location.href = "DeleteKlant.html";
+				    },
+				    error: function (jqXHR, status, err){
+				    	alert("U bent niet ingelogd of niet geauthoriseert voor deze actie");
+				    }
+				   
+				});
+			});
+		
+		$("#klant").click(function() {
+			 
+			 $.ajax({
+				    url: "restservices/testing/getgebruiker2",
+				    method: "GET",
+				    beforeSend: function (xhr) {
+				        var token = window.sessionStorage.getItem("sessionToken");
+				        xhr.setRequestHeader( 'Authorization', 'Bearer ' + token);
+				        
+				    },
+				    success: function (data) {
+				    	 
+						 var gebruikers = data;
+						 window.location.href = "KlantPagina.html";
+				    },
+				    error: function (jqXHR, status, err){
+				    	alert("U bent niet ingelogd of niet geauthoriseert voor deze actie");
+				    }
+				   
+				});
+			});
+		</script>
+	</body>
+</html>

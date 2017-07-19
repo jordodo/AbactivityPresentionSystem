@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="icon"
+		  	  type="image/png"
+		  	  href="favicon.png" />
+			<style>
+				body
+					{
+   						margin: 5px;
+    					float: left;
+    					background: AntiqueWhite;
+					}
+			</style>		
+	</head>
+	<title>Abactivity</title>
+	<body>
+	
+	<a href="Home.html"><button type="button">Home</button></a>
+	<h1>Klant Deleten</h1>
+		<p>Vul de gegevens van de klant die u wilt deleten in. Haal hiervoor eerst de Klantcode op vanuit het klantenoverzicht. <br>
+		   Er is geen extra waarschuwing hiervoor <br>
+		   </p>
+		   
+		   <div> 
+				<form id = "deleteform">	
+    	 
+    	 				<span>Klantcode :</span>
+        					<input type="text" name="kcode" required="required"
+               					 placeholder="00000" />
+          		
+                		
+   
+                			
+                			
+        			<input type="button" value="Delete deze Klant" id="delete" />
+  
+				</form>
+				</div>
+			
+		
+		<script src="https://code.jquery.com/jquery-3.2.0.min.js"></script>
+		<script>
+	
+	$("#delete").click(function(event) {
+				
+			
+			  var data = $("#deleteform").serialize();
+			  
+			
+			  $.post("restservices/testing/deleteKlant", data, function(data2) {
+				  alert(data2);
+				  
+			    
+
+			  }).fail(function(jqXHR, textStatus, errorThrown) {
+				  alert("U bent niet ingelogd of niet geauthoriseert voor deze actie");
+			    console.log(textStatus);
+			    console.log(errorThrown);
+			    //alert("nee nee");
+			  });
+			});
+		
+		
+	/*	
+		$("#delete").click(function() {
+			 alert("Ja");
+			 $.ajax({
+				    url: "restservices/testing/deleteGebruiker",
+				    method: "POST",
+				    beforeSend: function (xhr) {
+				        var token = window.sessionStorage.getItem("sessionToken");
+				        xhr.setRequestHeader( 'Authorization', 'Bearer ' + token);
+				        alert("tja");
+				    },
+				    success: function (data) {
+				    	 alert(data);
+
+						 alert("Laatste Ja");
+				    },
+				    error: function (jqXHR, status, err){
+				    	alert("U bent niet ingelogd of niet geauthoriseert voor deze actie");
+				    }
+				   
+				});
+			});
+*/
+		</script>
+	</body>
+</html>

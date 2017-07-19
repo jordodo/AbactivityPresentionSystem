@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="icon"
+		  	  type="image/png"
+		  	  href="favicon.png" />
+			<style>
+				body
+					{
+   						margin: 5px;
+    					float: left;
+    					background: AntiqueWhite;
+					}
+			</style>		
+	</head>
+	<title>Abactivity</title>
+	<body>
+	
+	<a href="Home.html"><button type="button">Home</button></a>
+	<h1>Wachtwoord wijzigen</h1>
+		<p>Vul de onderstaande gegevens in om uw wachtwoord te wijzigen <br>
+		   
+		   <div> 
+				<form id = "wachtwoordform">	
+    	 
+    	 				<span>Gebruikersnaam :</span>
+        					<input type="text" name="username" required="required"
+               					 placeholder="Gebruikersnaam" />
+    
+        				<span>Huidige Wachtwoord :</span>
+        					<input type="password" name="password" required="required"
+                			placeholder="Oud" />
+                			
+                		<span>Nieuwe Wachtwoord :</span>
+        					<input type="password" name="password2" required="required"
+                			placeholder="Nieuw" />
+                		
+                		
+   
+                			
+                			
+        			<input type="button" value="Wijzig Wachtwoord" id="wachtwoord" />
+  
+				</form>
+				</div>
+			
+		
+		<script src="https://code.jquery.com/jquery-3.2.0.min.js"></script>
+		<script>
+	
+	$("#wachtwoord").click(function(event) {
+				
+			
+			  var data = $("#wachtwoordform").serialize();
+			  
+			
+			  $.post("restservices/testing/wijzigWachtwoord", data, function(data2) {
+				  var iets = data2
+				  
+			    
+
+			  }).fail(function(jqXHR, textStatus, errorThrown) {
+				alert("Er ging toch iets mis, probeer opnieuw of contacteer een admin");
+			    console.log(textStatus);
+			    console.log(errorThrown);
+			    //alert("nee nee");
+			  });
+			});
+		
+		/*
+		$("#wachtwoord").click(function() {
+			 alert("Ja");
+			 $.ajax({
+				    url: "restservices/testing/getgebruiker",
+				    method: "GET",
+				    beforeSend: function (xhr) {
+				        var token = window.sessionStorage.getItem("sessionToken");
+				        xhr.setRequestHeader( 'Authorization', 'Bearer ' + token);
+				        alert("tja");
+				    },
+				    success: function (xhr) {
+				    	
+				    	alert("Ja");
+						
+						  var data = $("#wachtwoordform").serialize();
+						  alert(data);
+						
+						  $.post("restservices/testing/wijzigWachtwoord", data, function(data2) {
+							  alert(data2);
+							  
+						    
+
+						  }).fail(function(jqXHR, textStatus, errorThrown) {
+							alert("nee");
+						    console.log(textStatus);
+						    console.log(errorThrown);s
+						    //alert("nee nee");
+						  });
+				    },
+				    error: function (jqXHR, status, err){
+				    	alert("U bent niet ingelogd of niet geauthoriseert voor deze actie");
+				    }
+				   
+				});
+			});
+		*/
+		</script>
+	</body>
+</html>

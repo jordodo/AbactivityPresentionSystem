@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="icon"
+		  	  type="image/png"
+		  	  href="favicon.png" />
+			<style>
+				body
+					{
+   						margin: 5px;
+    					float: left;
+    					background: AntiqueWhite;
+					}
+			</style>		
+	</head>
+	<title>Abactivity</title>
+	<body>
+	<a href="Home.html"><button type="button">Home</button></a>
+	<a href="index.html"><button type="button">Terug naar Inlogpagina</button></a>
+	<h1>Uitloggen</h1>
+		<p>Klik op de knop als u zeker weet dat u uit wilt loggen</p>
+		   
+			
+			<div>  
+				<form id = "uitlog">	
+    	 
+        			<input type="button" value="Uitloggen" id="uitlog" />
+  
+				</form>
+				
+			</div>
+		
+		<script src="https://code.jquery.com/jquery-3.2.0.min.js"></script>
+		<script>
+		$("#uitlog").click(function() {
+			alert("U wordt nu uitgelogd");
+			window.sessionStorage.removeItem("sessionToken");
+			
+			window.location.href = "index.html";
+			
+			 
+			});
+		
+		
+		
+		</script>
+	</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="icon"
+		  	  type="image/png"
+		  	  href="favicon.png" />
+		  	  			<style>
+				body
+					{
+   						margin: 5px;
+    					float: left;
+    					background: AntiqueWhite;
+					}
+			</style>
+		
+	</head>
+	<title>Abactivity</title>
+	<body>
+	
+	<a href="Home.html"><button type="button">Home</button></a>
+	<h1>Gebruiker Deleten</h1>
+		<p>Vul de gebruikersnaam van de gebruiker die u wilt deleten in. Er is geen extra waarschuwing hiervoor <br>
+		   
+		   <div> 
+				<form id = "deleteform">	
+    	 
+    	 				<span>Gebruikersnaam :</span>
+        					<input type="text" name="username" required="required"
+               					 placeholder="Gebruikersnaam" />
+          		
+                		
+   
+                			
+                			
+        			<input type="button" value="Delete deze gebruiker" id="delete" />
+  
+				</form>
+				</div>
+			
+		
+		<script src="https://code.jquery.com/jquery-3.2.0.min.js"></script>
+		<script>
+	
+	$("#delete").click(function(event) {
+				
+			
+			  var data = $("#deleteform").serialize();
+			 
+			
+			  $.post("restservices/testing/deleteGebruiker", data, function(data2) {
+				  alert(data2);
+				  
+			    
+
+			  }).fail(function(jqXHR, textStatus, errorThrown) {
+				alert("Er ging iets fout, probeer opnieuw");
+			    console.log(textStatus);
+			    console.log(errorThrown);
+			    //alert("nee nee");
+			  });
+			});
+		
+		
+	/*	
+		$("#delete").click(function() {
+			 alert("Ja");
+			 $.ajax({
+				    url: "restservices/testing/deleteGebruiker",
+				    method: "POST",
+				    beforeSend: function (xhr) {
+				        var token = window.sessionStorage.getItem("sessionToken");
+				        xhr.setRequestHeader( 'Authorization', 'Bearer ' + token);
+				        alert("tja");
+				    },
+				    success: function (data) {
+				    	 alert(data);
+
+						 alert("Laatste Ja");
+				    },
+				    error: function (jqXHR, status, err){
+				    	alert("U bent niet ingelogd of niet geauthoriseert voor deze actie");
+				    }
+				   
+				});
+			});
+*/
+		</script>
+	</body>
+</html>

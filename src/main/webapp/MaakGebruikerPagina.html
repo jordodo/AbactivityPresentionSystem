@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="icon"
+		  	  type="image/png"
+		  	  href="favicon.png" />
+			<style>
+				body
+					{
+   						margin: 5px;
+    					float: left;
+    					background: AntiqueWhite;
+					}
+			</style>		
+	</head>
+	<title>Abactivity</title>
+	<body>
+	
+	<a href="index.html"><button type="button">Terug naar Inlogpagina</button></a>
+	<h1>Sign Up</h1>
+		<p>Vul de onderstaande gegevens in om een account aan te maken. Vergeet uw Klantcode niet bij de hand te houden <br>
+		   
+		   <div> 
+				<form id = "gebruikerform">	
+    	 
+    	 				<span>Gebruikersnaam :</span>
+        					<input type="text" name="username" required="required"
+               					 placeholder="Gebruikersnaam" />
+    
+        				<span>Wachtwoord :</span>
+        					<input type="password" name="password" required="required"
+                			placeholder="Wachtwoord" />
+                			
+                		<span>Klantcode :</span>
+        					<input type="number" name="kcode" required="required"
+                			placeholder="Klantcode" />
+                		
+                		
+   
+                			
+                			
+        			<input type="button" value="Sign Up" id="gebruiker" />
+  
+				</form>
+				</div>
+			
+		
+		<script src="https://code.jquery.com/jquery-3.2.0.min.js"></script>
+		<script>
+	$("#gebruiker").click(function(event) {
+			//alert("Ja");
+			
+			  var data = $("#gebruikerform").serialize();
+			  //alert(data);
+			
+			  $.post("restservices/testing/maakgebruiker", data, function(data2) {
+				  alert(data2);
+				  
+			    
+
+			  }).fail(function(jqXHR, textStatus, errorThrown) {
+				  alert("Er ging toch iets mis, probeer opnieuw of contacteer een admin");
+			    console.log(textStatus);
+			    console.log(errorThrown);
+			    //alert("nee nee");
+			  });
+			});
+		
+		</script>
+	</body>
+</html>

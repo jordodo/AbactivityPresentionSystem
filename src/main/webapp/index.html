@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	
+    	<title>Abactivity</title>
+			<style>
+				body
+					{
+   						margin: 5px;
+    					float: left;
+    					background: AntiqueWhite;
+					}
+					
+
+
+
+
+			</style>
+
+		<link rel="icon"
+		  	  type="image/png"
+		  	  href="favicon.png" />
+		
+	
+	</head>
+	<body>
+	
+		<h1>Abactivity Planning System</h1>
+			<p> Welkom in het Abactivity Planning System, oftewel APS. Dit is een Proof of Concept test versie <br>
+				van het uiteindelijke systeem. Registreer uzelf eerst als klant door op de bijbehorende knop te klikken. <br>
+				Hierna kunt een account aanmaken met de bijbehorende knop. Nu kunt u inloggen. Zodra u ingelogd bent <br>
+				verschijnt de knop voor het hoofdmenu als Verder<br>
+				<br>
+				Bedankt voor het gebruik van APS, denk er wel aan dat dit een testversie en misschien nog niet alles naar behoren werkt<br>
+				Versie 0.1
+			</p>
+			<div> 
+	<form id = "loginform">	
+    	
+   	
+        <span>Gebruikersnaam :</span>
+        <input type="text" name="username" required="required"
+                placeholder="Gebruikersnaam" />
+    
+        <span>Wachtwoord :</span>
+        <input type="password" name="password" required="required"
+                placeholder="Wachtwoord" />
+   
+        
+        <input type="button" value="login" id="login" />
+  
+</form>
+
+
+<a href='MaakKlantPagina.html'><button type='button'>Klant registratie</button></a>
+<a href='MaakGebruikerPagina.html'><button type='button'>Sign Up</button></a>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.0.min.js"></script>
+<script>
+$("#login").click(function(event) {
+	
+	
+	  var data = $("#loginform").serialize();
+	
+	  $.post("restservices/authentication", data, function(response) {
+		  alert("U bent ingelogd, druk op Verder");
+	    window.sessionStorage.setItem("sessionToken", response);
+	    $("body").append("<a href='Home.html'><button type='button'>Verder</button></a>");
+	    
+
+	  }).fail(function(jqXHR, textStatus, errorThrown) {
+		  alert("Foutieve inlog, probeer opnieuw");
+	    console.log(textStatus);
+	    console.log(errorThrown);
+	  });
+	});
+/*	
+$("#test").click(function() {
+	 alert("Ja");
+	 $.ajax({
+		    url: "restservices/testing/getgebruiker2",
+		    method: "GET",
+		    beforeSend: function (xhr) {
+		        var token = window.sessionStorage.getItem("sessionToken");
+		        xhr.setRequestHeader( 'Authorization', 'Bearer ' + token);
+		        alert("tja");
+		    },
+		    success: function (data) {
+		    	 alert("Ja ja");
+				 var gebruikers = data;
+				 $.each(gebruikers, function(i, gebruiker) {
+						    $("body").append("<h4>" + i + ": " + gebruiker.name + "</h4>");
+					});
+
+				 alert("Laatste Ja");
+		    },
+		    error: function (jqXHR, status, err){
+		    	alert("U bent niet ingelogd of niet geauthoriseert voor deze actie");
+		    }
+		   
+		});
+	});
+	*/
+
+</script>
+</body>
+
+</html>

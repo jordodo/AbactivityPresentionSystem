@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="icon"
+		  	  type="image/png"
+		  	  href="favicon.png" />
+			<style>
+				body
+					{
+   						margin: 5px;
+    					float: left;
+    					background: AntiqueWhite;
+					}
+			</style>		
+	</head>
+	<title>Abactivity</title>
+	<body>
+	<a href="Home.html"><button type="button">Terug naar Home</button></a>
+			<div>  
+				<form id = "refreshform">	
+    	 			<input type="button" value="Refresh" id="refresh" />
+  				</form>
+			</div>
+	<h1>Gebruiker Pagina</h1>
+		<p>Op deze pagina kunt u de gegevens van gebruikers opvragen in een lijst</p>
+			<div>  
+				<form id = "gebruikerform">	
+    	 			<input type="button" value="Haal Gebruikers op" id="gebruikerOphaal" />
+  				</form>
+			</div>
+		
+		<script src="https://code.jquery.com/jquery-3.2.0.min.js"></script>
+		<script>
+		$("#gebruikerOphaal").click(function() {
+			 
+			 $.ajax({
+				    url: "restservices/testing/getgebruiker2",
+				    method: "GET",
+				    beforeSend: function (xhr) {
+				        var token = window.sessionStorage.getItem("sessionToken");
+				        xhr.setRequestHeader( 'Authorization', 'Bearer ' + token);
+				        
+				    },
+				    success: function (data) {
+				    	 
+						 var gebruikers = data;
+						 $.each(gebruikers, function(i, gebruiker) {
+								    $("body").append("<h4>" + (i + 1) + ": " + gebruiker.name + "</h4>");
+							});
+				    },
+				    error: function (jqXHR, status, err){
+				    	alert("U bent niet ingelogd of niet geauthoriseert voor deze actie");
+				    }
+				   
+				});
+			});
+		
+		$("#refresh").click(function() {
+			 
+			 window.location.reload(false);
+			});
+		</script>
+	</body>
+</html>
